@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd
+      http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.2.xsd">
+
+    <changeSet id="v03-1" author="DagaievMykyta">
+        <createTable tableName="shop_books">
+            <column name="shop_id" type="INTEGER">
+                <constraints foreignKeyName="fk_shop_book_shops_id" nullable="false" referencedTableName="shops" referencedColumnNames="shop_id"/>
+            </column>
+            <column name="book_id" type="INTEGER">
+                <constraints foreignKeyName="fk_books_id" nullable="false" referencedTableName="books" referencedColumnNames="book_id"/>
+            </column>
+            <column name="books_amount" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="v03-2" author="DagaievMykyta">
+        <createTable tableName="book_sales">
+            <column name="sale_id" type="SERIAL">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="shop_id" type="INTEGER">
+                <constraints foreignKeyName="fk_book_sales_shops_id" nullable="false" referencedTableName="shops" referencedColumnNames="shop_id"/>
+            </column>
+            <column name="amount_sold" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="total_price" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
